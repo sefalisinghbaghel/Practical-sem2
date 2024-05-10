@@ -1,0 +1,42 @@
+Using Titanic dataset, do the following
+
+a. Find total number of passengers with age less than 30
+
+b. Find total fare paid by passengers of first class
+
+c. Compare number of survivors of each passenger class
+
+
+
+
+ans:
+(a) import pandas as pd
+
+# Assuming you have loaded the Titanic dataset into a DataFrame called 'titanic_data'
+# Replace 'titanic_data.csv' with the path to your dataset file
+titanic_data = pd.read_csv('titanic_data.csv')
+
+# Filter passengers with age less than 30
+passengers_under_30 = titanic_data[titanic_data['Age'] < 30]
+
+# Count the total number of passengers with age less than 30
+total_passengers_under_30 = passengers_under_30.shape[0]
+
+print("Total number of passengers with age less than 30:", total_passengers_under_30)
+
+
+
+(b) # Filter passengers belonging to the first class
+first_class_passengers = titanic_data[titanic_data['Pclass'] == 1]
+
+# Calculate the total fare paid by first class passengers
+total_fare_first_class = first_class_passengers['Fare'].sum()
+
+print("Total fare paid by passengers of first class:", total_fare_first_class)
+
+
+(c) # Group the dataset by passenger class and sum up the survivors
+survivors_by_class = titanic_data.groupby('Pclass')['Survived'].sum()
+
+print("Number of survivors of each passenger class:")
+print(survivors_by_class)
